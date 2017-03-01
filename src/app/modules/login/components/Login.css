@@ -1,0 +1,24 @@
+@import '../../../assets/styles/variables.css';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--layout-gutter);
+
+  & > label {
+    flex: 1 1 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  & > input {
+    flex: 5 1 auto;
+  }
+}

@@ -1,0 +1,20 @@
+@import 'normalize.css';
+
+@import './variables';
+@import './fonts';
+
+html {
+  font-family: "overpass", sans-serif;
+  font-size: 16px;
+  color: var(--color-font);
+  background-color: var(--color-background);
+}
+
+body {
+  padding: var(--layout-gutter);
+}
+
+fieldset {
+  padding: var(--layout-gutter);
+  margin: 0;
+}
