@@ -19,6 +19,7 @@ function * initClientSaga (action) {
     yield put(actions.INIT_CLIENT.success())
     yield put(actions.DISPLAY_ASSETS.request())
   } catch (error) {
+    console.error(error)
     yield put(actions.INIT_CLIENT.failure(error.message))
   }
 }
@@ -30,6 +31,7 @@ function * displayAssetsSaga (action) {
     route('/assets')
     yield put(actions.DISPLAY_ASSETS.success())
   } catch (error) {
+    console.error(error)
     yield put(actions.DISPLAY_ASSETS.failure(error.message))
   }
 }
