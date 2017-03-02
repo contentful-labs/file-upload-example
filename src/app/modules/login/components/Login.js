@@ -8,18 +8,23 @@ export default class Login extends Component {
     accessToken: proptypes.string.isRequired,
     spaceId: proptypes.string.isRequired,
     setAccessToken: proptypes.func.isRequired,
-    setSpaceId: proptypes.func.isRequired
+    setSpaceId: proptypes.func.isRequired,
+    initClient: proptypes.func.isRequired
   }
   constructor (props) {
     super(props)
     this._onAccessTokenChange = this._onAccessTokenChange.bind(this)
     this._onSpaceIdChance = this._onSpaceIdChance.bind(this)
+    this._onFormSubmit = this._onFormSubmit.bind(this)
   }
   _onAccessTokenChange (e) {
     this.props.setAccessToken(e.target.value.trim())
   }
   _onSpaceIdChance (e) {
     this.props.setSpaceId(e.target.value.trim())
+  }
+  _onFormSubmit () {
+    this.props.initClient()
   }
   render ({ accessToken, spaceId }) {
     return (
@@ -31,9 +36,7 @@ export default class Login extends Component {
               id='access-token'
               type='text'
               value={accessToken}
-              onChange={this._onAccessTokenChange}
-              onInput={this._onAccessTokenChange}
-              onKeyUp={this._onAccessTokenChange} />
+              onChange={this._onAccessTokenChange} />
           </div>
           <div className={styles.group}>
             <label htmlFor='space-id'>Space ID:</label>
@@ -41,9 +44,10 @@ export default class Login extends Component {
               id='space-id'
               type='text'
               value={spaceId}
-              onChange={this._onSpaceIdChance}
-              onInput={this._onSpaceIdChance}
-              onKeyUp={this._onSpaceIdChance} />
+              onChange={this._onSpaceIdChance} />
+          </div>
+          <div className={styles.group}>
+            <input type='button' onClick={this._onFormSubmit} value='Connect' />
           </div>
         </div>
       </div>

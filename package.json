@@ -56,13 +56,12 @@
     "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
-    "contentful": "^3.8.1",
+    "contentful-management": "beta",
     "normalize.css": "^5.0.0",
     "preact": "^7.1.0",
     "preact-redux": "^2.0.0",
     "proptypes": "^0.14.4",
     "redux": "^3.6.0",
-    "redux-actions": "^1.2.2",
     "redux-saga": "^0.14.3"
   }
 }

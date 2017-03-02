@@ -1,8 +1,6 @@
-import { spawn } from 'redux-saga/effects'
-
-function * initSaga () {
-}
+import { fork } from 'redux-saga/effects'
+import contentfulSaga from './contentful/saga'
 
 export default function * mainSaga () {
-  yield spawn(initSaga)
+  yield fork(contentfulSaga)
 }

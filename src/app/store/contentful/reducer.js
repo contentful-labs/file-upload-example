@@ -1,7 +1,7 @@
 import { initialState } from './config'
 import * as actions from './actions'
 
-export default function controlsReducer (state = initialState, action) {
+export default function contentfulReducer (state = initialState, action) {
   const { type, data } = action
 
   if (type === actions.SET_ACCESS_TOKEN) {

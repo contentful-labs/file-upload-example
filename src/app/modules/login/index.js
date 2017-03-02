@@ -1,7 +1,7 @@
 import { connect } from 'preact-redux'
 
 import { selectAccessToken, selectSpaceId } from 'store/contentful/selectors'
-import { setAccessToken, setSpaceId } from 'store/contentful/actions'
+import { setAccessToken, setSpaceId, INIT_CLIENT } from 'store/contentful/actions'
 
 import Login from './components/Login'
 
@@ -23,6 +23,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(setSpaceId({
         spaceId
       }))
+    },
+    initClient: () => {
+      dispatch(INIT_CLIENT.request())
     }
   }
 }
