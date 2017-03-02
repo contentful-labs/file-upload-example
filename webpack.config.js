@@ -102,6 +102,10 @@ const webpackConfig = {
     new HtmlWebpackPlugin({
       template: 'src/app/index.html'
     }),
+    new HtmlWebpackPlugin({
+      template: 'src/app/index.html',
+      filename: '404.html'
+    }),
     new Webpack.DefinePlugin({
       APP_CONFIG: JSON.stringify(config)
     })

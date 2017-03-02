@@ -1,4 +1,4 @@
-import { fork, select, put } from 'redux-saga/effects'
+import { fork, spawn, select, put } from 'redux-saga/effects'
 import { route } from 'preact-router'
 
 import contentfulSaga from './contentful/saga'
@@ -10,7 +10,7 @@ function * initSaga () {
   const spaceId = yield select(selectors.selectSpaceId)
 
   if (!accessToken || !spaceId) {
-    route('/')
+    route(`${APP_CONFIG.paths.webpackPublicPath}`)
     return
   }
 
@@ -19,5 +19,5 @@ function * initSaga () {
 
 export default function * mainSaga () {
   yield fork(contentfulSaga)
-  yield fork(initSaga)
+  yield spawn(initSaga)
 }

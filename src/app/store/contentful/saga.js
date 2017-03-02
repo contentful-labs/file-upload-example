@@ -28,7 +28,7 @@ function * displayAssetsSaga (action) {
   try {
     const assets = yield call(fetchAssets)
     yield put(actions.setAssets({assets}))
-    route('/assets')
+    route(`${APP_CONFIG.paths.webpackPublicPath}assets`)
     yield put(actions.DISPLAY_ASSETS.success())
   } catch (error) {
     console.error(error)
