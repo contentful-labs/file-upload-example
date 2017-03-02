@@ -2328,11 +2328,11 @@ got@^3.2.0:
     read-all-stream "^3.0.0"
     timed-out "^2.0.0"
 
-graceful-fs@4.1.10, graceful-fs@^4.1.2, graceful-fs@^4.1.4, graceful-fs@^4.1.6:
+graceful-fs@4.1.10, graceful-fs@^4.1.2, graceful-fs@^4.1.4:
   version "4.1.10"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.10.tgz#f2d720c22092f743228775c75e3612632501f131"
 
-graceful-fs@^4.1.11:
+graceful-fs@^4.1.11, graceful-fs@^4.1.6:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
@@ -4244,6 +4244,10 @@ postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.
 preact-redux@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/preact-redux/-/preact-redux-2.0.0.tgz#6b9ec5967c962e08e61503b9a8b6f24a1f18e3b8"
+
+preact-router@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/preact-router/-/preact-router-2.4.1.tgz#2dbf1756724eb2b0c401678c6cee5af2e7a2ccb8"
 
 preact@^7.1.0:
   version "7.2.0"

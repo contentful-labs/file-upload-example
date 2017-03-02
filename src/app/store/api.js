@@ -19,7 +19,8 @@ export async function initClient (accessToken, spaceId) {
 
 export async function fetchAssets () {
   try {
-    return await space.getAssets()
+    const assetsResponse = await space.getAssets()
+    return assetsResponse.items
   } catch (err) {
     throw err
   }

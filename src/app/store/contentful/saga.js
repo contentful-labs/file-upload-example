@@ -1,9 +1,9 @@
 import { takeLatest } from 'redux-saga'
 import { call, put, select } from 'redux-saga/effects'
+import { route } from 'preact-router'
+
 import * as actions from './actions'
-
 import * as selectors from './selectors'
-
 import { initClient, fetchAssets } from '../api'
 
 function * initClientSaga (action) {
@@ -12,26 +12,25 @@ function * initClientSaga (action) {
     const spaceId = yield select(selectors.selectSpaceId)
 
     if (!accessToken || !spaceId) {
-      yield put(actions.INIT_CLIENT.failure())
-      return
+      throw new Error('AccessToken and SpaceID must be provided.')
     }
 
     yield initClient(accessToken, spaceId)
     yield put(actions.INIT_CLIENT.success())
+    yield put(actions.DISPLAY_ASSETS.request())
   } catch (error) {
-    console.error(error)
-    yield put(actions.INIT_CLIENT.failure())
+    yield put(actions.INIT_CLIENT.failure(error.message))
   }
 }
 
 function * displayAssetsSaga (action) {
   try {
-    const data = yield call(fetchAssets)
-    yield put(actions.setAssets(data))
+    const assets = yield call(fetchAssets)
+    yield put(actions.setAssets({assets}))
+    route('/assets')
     yield put(actions.DISPLAY_ASSETS.success())
   } catch (error) {
-    console.error(error)
-    yield put(actions.DISPLAY_ASSETS.failure())
+    yield put(actions.DISPLAY_ASSETS.failure(error.message))
   }
 }
 

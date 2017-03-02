@@ -15,7 +15,8 @@ try {
     hot: false,
     hotOnly: false,
     clientLogLevel: 'info',
-    stats: 'normal'
+    stats: 'normal',
+    historyApiFallback: true
   })
   server.listen(serverPort, 'localhost', function (err) {
     if (err) {

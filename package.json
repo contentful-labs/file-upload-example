@@ -60,6 +60,7 @@
     "normalize.css": "^5.0.0",
     "preact": "^7.1.0",
     "preact-redux": "^2.0.0",
+    "preact-router": "^2.4.1",
     "proptypes": "^0.14.4",
     "redux": "^3.6.0",
     "redux-saga": "^0.14.3"

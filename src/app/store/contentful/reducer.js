@@ -22,5 +22,15 @@ export default function contentfulReducer (state = initialState, action) {
     }
   }
 
+  if (type === actions.SET_ASSETS) {
+    console.log({data})
+    const { assets } = data
+
+    return {
+      ...state,
+      assets
+    }
+  }
+
   return state
 }
