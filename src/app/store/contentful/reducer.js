@@ -31,5 +31,17 @@ export default function contentfulReducer (state = initialState, action) {
     }
   }
 
+  if (type === actions.ADD_ASSETS) {
+    const { assets } = data
+
+    return {
+      ...state,
+      assets: [
+        ...assets,
+        ...state.assets
+      ]
+    }
+  }
+
   return state
 }

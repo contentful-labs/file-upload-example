@@ -1,3 +1,25 @@
 @import '../../../assets/styles/variables.css';
 
 .wrapper {}
+
+.dropzone {
+  &:before {
+    content: 'Drag & drop files anywhere to upload';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5em;
+    border: 1px solid black;
+    border-top: none;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    font-size: 0.8em;
+    opacity: 0.6;
+  }
+}
+
+.dropzoneActive {
+  background: #ddd;
+}

@@ -1,4 +1,4 @@
-const { join } = require('path')
+const { join, resolve } = require('path')
 const Webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('sane-config')
@@ -26,7 +26,8 @@ const webpackConfig = {
       {
         test: /\.js$/,
         include: [
-          webpackSource
+          webpackSource,
+          resolve(__dirname, 'node_modules/preact-compat')
         ],
         use: [
           {
@@ -96,7 +97,11 @@ const webpackConfig = {
     modules: [
       webpackSource,
       'node_modules'
-    ]
+    ],
+    alias: {
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat'
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -124,9 +129,6 @@ if (__PROD__) {
     }
   }))
   webpackConfig.plugins.push(new Webpack.optimize.AggressiveMergingPlugin())
-  webpackConfig.plugins.push(new Webpack.optimize.UglifyJsPlugin({
-    screwIE8: true
-  }))
 }
 
 module.exports = webpackConfig

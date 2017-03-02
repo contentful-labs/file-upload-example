@@ -1,12 +1,12 @@
 {
   "plugins": [
-    "transform-object-rest-spread"
+    "transform-class-properties",
+    "transform-object-rest-spread",
+    "transform-async-to-generator",
+    ["transform-react-jsx", { "pragma":"h" }]
   ],
   "presets": [
-    ["env", {
-      "targets": {
-        "node": true
-      }
-    }]
+    "react",
+    "es2015"
   ]
 }

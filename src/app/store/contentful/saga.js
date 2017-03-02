@@ -4,7 +4,7 @@ import { route } from 'preact-router'
 
 import * as actions from './actions'
 import * as selectors from './selectors'
-import { initClient, fetchAssets } from '../api'
+import { initClient, fetchAssets, createAssetFromFile } from '../api'
 
 function * initClientSaga (action) {
   try {
@@ -36,9 +36,24 @@ function * displayAssetsSaga (action) {
   }
 }
 
+function * uploadSaga (action) {
+  try {
+    const { files } = action.data
+    const assets = yield Promise.all(
+      files.map((file) => createAssetFromFile(file))
+    )
+    yield put(actions.addAssets({assets}))
+    yield put(actions.UPLOAD_FILES.success())
+  } catch (error) {
+    console.error(error)
+    yield put(actions.UPLOAD_FILES.failure(error.message))
+  }
+}
+
 export default function * watchFetchData () {
   yield [
     takeLatest(actions.INIT_CLIENT.REQUEST, initClientSaga),
-    takeLatest(actions.DISPLAY_ASSETS.REQUEST, displayAssetsSaga)
+    takeLatest(actions.DISPLAY_ASSETS.REQUEST, displayAssetsSaga),
+    takeLatest(actions.UPLOAD_FILES.REQUEST, uploadSaga)
   ]
 }

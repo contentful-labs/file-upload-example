@@ -14,3 +14,8 @@ export const DISPLAY_ASSETS = createSignalAction(name, 'DISPLAY_ASSETS')
 
 export const SET_ASSETS = createDeltaAction(name, 'SET_ASSETS')
 export const setAssets = createActionCreator(SET_ASSETS)
+
+export const ADD_ASSETS = createDeltaAction(name, 'ADD_ASSETS')
+export const addAssets = createActionCreator(ADD_ASSETS)
+
+export const UPLOAD_FILES = createSignalAction(name, 'UPLOAD_FILES')

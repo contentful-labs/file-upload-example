@@ -1,11 +1,20 @@
 import { h, Component } from 'preact'
 import proptypes from 'proptypes'
+import Dropzone from 'react-dropzone'
 
 import styles from './Assets.css'
 
 export default class Assets extends Component {
   static propTypes = {
-    assets: proptypes.array.isRequired
+    assets: proptypes.array.isRequired,
+    uploadFiles: proptypes.func.isRequired
+  }
+  constructor (props) {
+    super(props)
+    this._onDrop = this._onDrop.bind(this)
+  }
+  _onDrop (files) {
+    this.props.uploadFiles(files)
   }
   render ({ assets }) {
     const assetsList = assets.map((asset) => {
@@ -22,10 +31,16 @@ export default class Assets extends Component {
     })
     return (
       <div>
-        <h1>Your assets:</h1>
-        <ul className={styles.wrapper}>
-          {assetsList}
-        </ul>
+        <Dropzone
+          disableClick
+          onDrop={this._onDrop}
+          className={styles.dropzone}
+          activeClassName={styles.dropzoneActive} >
+          <h1>Your assets:</h1>
+          <ul className={styles.wrapper}>
+            {assetsList}
+          </ul>
+        </Dropzone>
       </div>
     )
   }
