@@ -1,6 +1,8 @@
 import { takeLatest } from 'redux-saga'
 import { call, put, select } from 'redux-saga/effects'
 import { route } from 'preact-router'
+import swal from 'sweetalert'
+import 'sweetalert/dist/sweetalert.css'
 
 import * as actions from './actions'
 import { setBusyState, setBusyMessage } from 'store/busy/actions'
@@ -24,7 +26,11 @@ function * initClientSaga (action) {
   } catch (error) {
     yield put(setBusyState({state: false}))
     console.error(error)
-    window.alert(error.message)
+    swal({
+      title: 'An error occured 😱',
+      text: error.message,
+      type: 'error'
+    })
     yield put(actions.INIT_CLIENT.failure(error.message))
   }
 }
@@ -40,8 +46,12 @@ function * displayAssetsSaga (action) {
     yield put(setBusyState({state: false}))
   } catch (error) {
     yield put(setBusyState({state: false}))
-    console.error(error)
-    window.alert(error.message)
+    swal(error)
+    window.alert({
+      title: 'An error occured 😱',
+      text: error.message,
+      type: 'error'
+    })
     yield put(actions.DISPLAY_ASSETS.failure(error.message))
   }
 }
@@ -61,7 +71,11 @@ function * uploadSaga (action) {
   } catch (error) {
     yield put(setBusyState({state: false}))
     console.error(error)
-    window.alert(error.message)
+    swal({
+      title: 'An error occured 😱',
+      text: error.message,
+      type: 'error'
+    })
     yield put(actions.UPLOAD_FILES.failure(error.message))
   }
 }
