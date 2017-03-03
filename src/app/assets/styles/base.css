@@ -10,11 +10,13 @@ html {
   background-color: var(--color-background);
 }
 
-body {
-  padding: var(--layout-gutter);
-}
-
 fieldset {
   padding: var(--layout-gutter);
   margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }

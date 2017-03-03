@@ -5,6 +5,16 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  max-width: calc(500px - (var(--layout-gutter) * 2));
+  margin: 0 auto;
+  padding: var(--layout-gutter);
+}
+
+.header {
+  text-align: center;
+  & h1 {
+    margin: calc(var(--layout-gutter) * 2) 0 calc(var(--layout-gutter) * 3);
+  }
 }
 
 .group {

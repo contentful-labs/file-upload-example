@@ -21,11 +21,21 @@ export default class Assets extends Component {
       const localeFile = Object.keys(asset.fields.file)[0]
       const localeTitle = Object.keys(asset.fields.title)[0]
       const title = asset.fields.title[localeTitle]
-      const url = asset.fields.file[localeFile].url
+      const ext = /\.(.*)$/.exec(asset.fields.file[localeFile].fileName)[1]
+
+      let preview = (
+        <div className={styles.fileIcon}>
+          {ext}
+        </div>
+      )
+      if (asset.fields.file[localeFile].contentType.indexOf('image') === 0) {
+        const url = `${asset.fields.file[localeFile].url}?w=800&h=600&q=80&fm=jpg&fl=progressive&fit=fill`
+        preview = <img src={url} alt={title} />
+      }
       return (
         <li key={asset.sys.id}>
           <h3>{title}</h3>
-          <img src={url} alt={title} />
+          {preview}
         </li>
       )
     })
@@ -35,9 +45,11 @@ export default class Assets extends Component {
           disableClick
           onDrop={this._onDrop}
           className={styles.dropzone}
-          activeClassName={styles.dropzoneActive} >
+          activeClassName={styles.dropzoneActive}
+          >
+          <a className={styles.changeSpaceLink} href={`${APP_CONFIG.paths.webpackPublicPath}`}>Change space</a>
           <h1>Your assets:</h1>
-          <ul className={styles.wrapper}>
+          <ul className={styles.list}>
             {assetsList}
           </ul>
         </Dropzone>

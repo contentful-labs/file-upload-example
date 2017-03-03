@@ -1,8 +1,73 @@
 @import '../../../assets/styles/variables.css';
 
-.wrapper {}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  & > li {
+    position: relative;
+    padding: 0;
+
+    & > h3 {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0.5em;
+      color: color(white a(85%));
+      text-shadow: 0 0 5px color(black a(60%));
+      text-align: center;
+      text-transform: capitalize;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  & > li {
+    flex: 0 0 50%;
+  }
+
+  @media (min-width: 480px) {
+    & > li {
+      flex: 0 0 25%;
+    }
+  }
+}
+
+.fileIcon {
+  position: relative;
+  width: 60px;
+  height: 90px;
+  margin: var(--layout-gutter) auto calc(var(--layout-gutter) * 5);
+  background: #56AED2;
+  text-align: center;
+  line-height: 90px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.2em;
+
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border: 8px solid #1D78A4;
+    border-top-color: var(--color-background);
+    border-right-color: var(--color-background);
+    top: 0;
+    right: 0;
+  }
+}
 
 .dropzone {
+  padding: var(--layout-gutter);
+  min-height: 100vh;
+  box-sizing: border-box;
+
   &:before {
     content: 'Drag & drop files anywhere to upload';
     display: inline-block;
@@ -21,5 +86,11 @@
 }
 
 .dropzoneActive {
-  background: #ddd;
+  background: repeating-linear-gradient(-45deg, #ddd, #ddd 8px,transparent 8px, transparent 12px);
+}
+
+.changeSpaceLink {
+  position: absolute;
+  top: var(--layout-gutter);
+  right: var(--layout-gutter);
 }

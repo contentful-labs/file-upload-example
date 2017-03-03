@@ -1,6 +1,7 @@
 import { h, Component } from 'preact'
 import proptypes from 'proptypes'
 
+import contentfulLogo from 'assets/images/contentful.svg'
 import styles from './Login.css'
 
 export default class Login extends Component {
@@ -30,6 +31,10 @@ export default class Login extends Component {
     return (
       <div>
         <div className={styles.wrapper}>
+          <div className={styles.header}>
+            <img src={contentfulLogo} alt='Contentful' />
+            <h1>Direct File Upload Example</h1>
+          </div>
           <div className={styles.group}>
             <label htmlFor='access-token'>Access Token:</label>
             <input

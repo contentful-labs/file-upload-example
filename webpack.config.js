@@ -90,6 +90,19 @@ const webpackConfig = {
             }
           }
         ]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 50000,
+              mimetype: 'image/svg+xml',
+              name: './images/[hash].[ext]'
+            }
+          }
+        ]
       }
     ]
   },
