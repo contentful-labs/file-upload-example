@@ -12,8 +12,15 @@
 
 .header {
   text-align: center;
+
   & h1 {
     margin: calc(var(--layout-gutter) * 2) 0 calc(var(--layout-gutter) * 3);
+  }
+
+  & > img {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 }
 

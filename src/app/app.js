@@ -14,6 +14,7 @@ import mainSaga from 'store/mainSaga'
 import reducers from 'store/reducers'
 import Login from 'modules/login'
 import Assets from 'modules/assets'
+import Busy from 'components/busy'
 
 import './assets/styles/base.css'
 
@@ -49,10 +50,13 @@ load(store)
 
 render(
   <Provider store={store}>
-    <Router>
-      <Login path={APP_CONFIG.paths.webpackPublicPath} />
-      <Assets path={`${APP_CONFIG.paths.webpackPublicPath}assets`} />
-    </Router>
+    <div>
+      <Router>
+        <Login path={APP_CONFIG.paths.webpackPublicPath} />
+        <Assets path={`${APP_CONFIG.paths.webpackPublicPath}assets`} />
+      </Router>
+      <Busy />
+    </div>
   </Provider>,
   document.getElementById('app')
 )
