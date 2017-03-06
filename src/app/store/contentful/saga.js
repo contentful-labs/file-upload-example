@@ -9,6 +9,16 @@ import { setBusyState, setBusyMessage } from 'store/busy/actions'
 import * as selectors from './selectors'
 import { initClient, fetchAssets, createAssetFromFile } from '../api'
 
+async function errorHandler (error) {
+  await put(setBusyState({state: false}))
+  console.error(error)
+  swal({
+    title: 'An error occured 😱',
+    text: error.message,
+    type: 'error'
+  })
+}
+
 function * initClientSaga (action) {
   try {
     yield put(setBusyState({state: true}))
@@ -24,13 +34,7 @@ function * initClientSaga (action) {
     yield put(actions.INIT_CLIENT.success())
     yield put(actions.DISPLAY_ASSETS.request())
   } catch (error) {
-    yield put(setBusyState({state: false}))
-    console.error(error)
-    swal({
-      title: 'An error occured 😱',
-      text: error.message,
-      type: 'error'
-    })
+    yield errorHandler(error)
     yield put(actions.INIT_CLIENT.failure(error.message))
   }
 }
@@ -45,13 +49,7 @@ function * displayAssetsSaga (action) {
     yield put(actions.DISPLAY_ASSETS.success())
     yield put(setBusyState({state: false}))
   } catch (error) {
-    yield put(setBusyState({state: false}))
-    swal(error)
-    window.alert({
-      title: 'An error occured 😱',
-      text: error.message,
-      type: 'error'
-    })
+    yield errorHandler(error)
     yield put(actions.DISPLAY_ASSETS.failure(error.message))
   }
 }
@@ -59,23 +57,21 @@ function * displayAssetsSaga (action) {
 function * uploadSaga (action) {
   try {
     const { files } = action.data
-
     yield put(setBusyState({state: true}))
-    yield put(setBusyMessage({message: `Uploading ${files.length} files...`}))
-    const assets = yield Promise.all(
-      files.map((file) => createAssetFromFile(file))
-    )
+
+    let assets = []
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]
+      yield put(setBusyMessage({message: `Uploading file (${i + 1}/${files.length})`}))
+      const asset = yield createAssetFromFile(file)
+      assets.push(asset)
+    }
+
     yield put(actions.addAssets({assets}))
     yield put(actions.UPLOAD_FILES.success())
     yield put(setBusyState({state: false}))
   } catch (error) {
-    yield put(setBusyState({state: false}))
-    console.error(error)
-    swal({
-      title: 'An error occured 😱',
-      text: error.message,
-      type: 'error'
-    })
+    yield errorHandler(error)
     yield put(actions.UPLOAD_FILES.failure(error.message))
   }
 }
