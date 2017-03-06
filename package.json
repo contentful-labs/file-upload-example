@@ -15,6 +15,9 @@
     "dev": "NODE_ENV=development nodemon src/scripts/dev-server.js --exec babel-node --watch src/scripts/dev-server.js --watch config --watch webpack.config.js",
     "prod": "NODE_ENV=production node dist/scripts/prod-server.js"
   },
+  "engines": {
+    "node": ">=4.7"
+  },
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
