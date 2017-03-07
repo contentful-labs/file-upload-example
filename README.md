@@ -1,5 +1,8 @@
 # File Upload Example
 
+[![dependencies Status](https://david-dm.org/contentful-labs/file-upload-example/status.svg)](https://david-dm.org/contentful-labs/file-upload-example)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
 This project is an example to demonstrate our new [direct file upload feature](https://www.contentful.com/blog/2017/03/02/uploading-files-directly-to-contentful/) for the Content-Management-SDK
 released at the beginning of March 2017.
 
@@ -9,10 +12,11 @@ released at the beginning of March 2017.
 
 ## Technologies
 
+* [Contentful Management SDK](https://github.com/contentful/contentful-management.js)
 * [Preact](https://preactjs.com/)
-* [Redux](https://github.com/reactjs/redux)
+* [Redux](https://github.com/reactjs/redux) + [Redux Saga](https://github.com/redux-saga/redux-saga)
 * [Webpack 2](https://webpack.js.org/)
-* [CSS Modules](https://github.com/css-modules/css-modules)
+* [CSS Modules](https://github.com/css-modules/css-modules) via [PostCSS](http://postcss.org/) & [cssnext](http://cssnext.io/)
 * [Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
 * [History API](https://developer.mozilla.org/en/docs/Web/API/History)
 
