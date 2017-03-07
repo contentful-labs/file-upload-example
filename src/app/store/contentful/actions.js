@@ -8,6 +8,12 @@ export const setAccessToken = createActionCreator(SET_ACCESS_TOKEN)
 export const SET_SPACE_ID = createDeltaAction(name, 'SET_SPACE_ID')
 export const setSpaceId = createActionCreator(SET_SPACE_ID)
 
+export const SET_HOST = createDeltaAction(name, 'SET_HOST')
+export const setHost = createActionCreator(SET_HOST)
+
+export const SET_UPLOAD_HOST = createDeltaAction(name, 'SET_UPLOAD_HOST')
+export const setHostUpload = createActionCreator(SET_UPLOAD_HOST)
+
 export const INIT_CLIENT = createSignalAction(name, 'INIT_CLIENT')
 
 export const DISPLAY_ASSETS = createSignalAction(name, 'DISPLAY_ASSETS')

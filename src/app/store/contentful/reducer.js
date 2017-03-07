@@ -21,6 +21,22 @@ export default function contentfulReducer (state = initialState, action) {
       spaceId
     }
   }
+  if (type === actions.SET_HOST) {
+    const { host } = data
+
+    return {
+      ...state,
+      host
+    }
+  }
+  if (type === actions.SET_UPLOAD_HOST) {
+    const { hostUpload } = data
+
+    return {
+      ...state,
+      hostUpload
+    }
+  }
 
   if (type === actions.SET_ASSETS) {
     const { assets } = data

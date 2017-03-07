@@ -25,12 +25,17 @@ function * initClientSaga (action) {
     yield put(setBusyMessage({message: 'Initializing CMA Client'}))
     const accessToken = yield select(selectors.selectAccessToken)
     const spaceId = yield select(selectors.selectSpaceId)
+    let host = yield select(selectors.selectHost)
+    let hostUpload = yield select(selectors.selectHostUpload)
+
+    host = host || 'api.contentful.com'
+    hostUpload = hostUpload || 'upload.contentful.com'
 
     if (!accessToken || !spaceId) {
       throw new Error('AccessToken and SpaceID must be provided.')
     }
 
-    yield initClient(accessToken, spaceId)
+    yield initClient(accessToken, spaceId, host, hostUpload)
     yield put(actions.INIT_CLIENT.success())
     yield put(actions.DISPLAY_ASSETS.request())
   } catch (error) {
