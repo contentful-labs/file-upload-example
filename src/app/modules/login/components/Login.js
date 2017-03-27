@@ -42,16 +42,25 @@ export default class Login extends Component {
   render ({ accessToken, spaceId, host, hostUpload }) {
     return (
       <div>
-        <div className={styles.wrapper}>
+        <form className={styles.wrapper} onSubmit={this._onFormSubmit}>
           <div className={styles.header}>
             <img src={contentfulLogo} alt='Contentful' />
             <h1>Direct File Upload Example</h1>
+            <p>
+              This is an example showing how to upload files directly to the <a href="https://www.contentful.com">Contentful headless CMS</a>.
+              To start using it you need to create an account and enter your Content Management API credentials later on.
+            </p>
+            <p>
+              This example uses Preact, Redux and Redux Saga.
+              The source code is open source and you can find it on <a href="https://github.com/contentful-labs/file-upload-example">GitHub</a>.
+            </p>
           </div>
           <div className={styles.group}>
             <label htmlFor='access-token'>Access Token:</label>
             <input
               id='access-token'
               type='text'
+              required
               value={accessToken}
               onChange={this._onAccessTokenChange} />
           </div>
@@ -60,6 +69,7 @@ export default class Login extends Component {
             <input
               id='space-id'
               type='text'
+              required
               value={spaceId}
               onChange={this._onSpaceIdChange} />
           </div>
@@ -69,6 +79,7 @@ export default class Login extends Component {
               id='host'
               type='text'
               value={host}
+              required
               onChange={this._onHostChange} />
           </div>
           <div className={styles.group}>
@@ -76,13 +87,14 @@ export default class Login extends Component {
             <input
               id='hostUpload'
               type='text'
+              required
               value={hostUpload}
               onChange={this._onHostUploadChange} />
           </div>
           <div className={styles.group}>
-            <input type='button' onClick={this._onFormSubmit} value='Connect' />
+            <input type='submit' value='Connect' />
           </div>
-        </div>
+        </form>
       </div>
     )
   }
