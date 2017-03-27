@@ -30,7 +30,7 @@ Alternatively clone this repository, run `npm install` and start a dev server vi
 
 ### Development
 
-The minimum supported node version is 4.7.
+The minimum supported node version for development is v7.6 since [Koa v2](https://github.com/koajs/koa#installation) requires node v7.6 or above.
 
 Via `npm run dev` you can spawn a Webpack dev server with live reload for the app source files and auto restart for changed configuration files.
 
