@@ -13,8 +13,10 @@
 .header {
   text-align: center;
 
+  margin-bottom: calc(var(--layout-gutter) * 1);
+
   & h1 {
-    margin: calc(var(--layout-gutter) * 2) 0 calc(var(--layout-gutter) * 3);
+    margin: calc(var(--layout-gutter) * 2) 0 calc(var(--layout-gutter) * 1);
   }
 
   & > img {
