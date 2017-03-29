@@ -1303,9 +1303,9 @@ content-type@^1.0.0, content-type@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/content-type/-/content-type-1.0.2.tgz#b7d113aee7a8dd27bd21133c4dc2529df1721eed"
 
-contentful-management@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/contentful-management/-/contentful-management-3.3.0.tgz#ce6c0a7fc4e6ea4ca47f1ba88efe5c6c9020cb5e"
+contentful-management@^3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/contentful-management/-/contentful-management-3.3.3.tgz#83a07c987e808fbbd0d1b260e5187882c52613e2"
   dependencies:
     axios "~0.15.3"
     contentful-sdk-core "^3.8.0"
@@ -5201,9 +5201,9 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
-style-loader@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-0.16.0.tgz#5f001a9bf58fff9fd40f8aa3b9738ab99d4000c7"
+style-loader@^0.16.1:
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-0.16.1.tgz#50e325258d4e78421dd9680636b41e8661595d10"
   dependencies:
     loader-utils "^1.0.2"
 
