@@ -31,7 +31,10 @@ export default class Assets extends Component {
           {ext}
         </div>
       )
-      if (asset.fields.file[localeFile].contentType.indexOf('image') === 0) {
+      if (
+        asset.fields.file[localeFile].contentType.indexOf('image') === 0 &&
+        asset.fields.file[localeFile].hasOwnProperty('url')
+      ) {
         const url = `${asset.fields.file[localeFile].url}?w=800&h=600&q=80&fm=jpg&fl=progressive&fit=fill`
         preview = <img src={url} alt={title} />
       }
