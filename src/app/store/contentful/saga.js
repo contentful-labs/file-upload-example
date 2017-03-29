@@ -40,6 +40,7 @@ function * initClientSaga (action) {
     yield put(actions.DISPLAY_ASSETS.request())
   } catch (error) {
     yield errorHandler(error)
+    yield put(setBusyState({state: false}))
     yield put(actions.INIT_CLIENT.failure(error.message))
   }
 }
@@ -55,6 +56,7 @@ function * displayAssetsSaga (action) {
     yield put(setBusyState({state: false}))
   } catch (error) {
     yield errorHandler(error)
+    yield put(setBusyState({state: false}))
     yield put(actions.DISPLAY_ASSETS.failure(error.message))
   }
 }
@@ -66,10 +68,14 @@ function * uploadSaga (action) {
 
     let assets = []
     for (let i = 0; i < files.length; i++) {
-      const file = files[i]
-      yield put(setBusyMessage({message: `Uploading file (${i + 1}/${files.length})`}))
-      const asset = yield createAssetFromFile(file)
-      assets.push(asset)
+      try {
+        const file = files[i]
+        yield put(setBusyMessage({message: `Uploading file (${i + 1}/${files.length})`}))
+        const asset = yield createAssetFromFile(file)
+        assets.push(asset)
+      } catch (error) {
+        yield errorHandler(error)
+      }
     }
 
     yield put(actions.addAssets({assets}))
@@ -77,6 +83,7 @@ function * uploadSaga (action) {
     yield put(setBusyState({state: false}))
   } catch (error) {
     yield errorHandler(error)
+    yield put(setBusyState({state: false}))
     yield put(actions.UPLOAD_FILES.failure(error.message))
   }
 }
