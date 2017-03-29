@@ -18,6 +18,9 @@ export default class Assets extends Component {
   }
   render ({ assets }) {
     const assetsList = assets.map((asset) => {
+      if (!asset.fields.hasOwnProperty('file')) {
+        return null
+      }
       const localeFile = Object.keys(asset.fields.file)[0]
       const localeTitle = Object.keys(asset.fields.title)[0]
       const title = asset.fields.title[localeTitle]
