@@ -9,7 +9,7 @@
     "build": "npm run clean && npm run build:babel && npm run build:webpack",
     "build:babel": "NODE_ENV=production babel src --out-dir dist --ignore src/app",
     "build:webpack": "NODE_ENV=production webpack -p --progress",
-    "build:webpack:log": "NODE_ENV=production webpack -p --progress --json > webpack.log.json",
+    "build:webpack:log": "NODE_ENV=production webpack -p --progress --json > webpack-build-log.json && webpack-bundle-analyzer webpack-build-log.json",
     "clean": "rimraf dist",
     "deploy": "npm run build && gh-pages -d dist/app",
     "dev": "NODE_ENV=development nodemon src/scripts/dev-server.js --exec babel-node --watch src/scripts/dev-server.js --watch config --watch webpack.config.js",
@@ -60,6 +60,7 @@
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.7",
     "webpack": "^3.4.1",
+    "webpack-bundle-analyzer": "^2.8.3",
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
