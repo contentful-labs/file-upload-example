@@ -44,9 +44,9 @@ const store = createStore(
 
 const load = storage.createLoader(storageEngine)
 load(store)
-.then((newState) => {
-  sagaMiddleware.run(mainSaga)
-})
+  .then((newState) => {
+    sagaMiddleware.run(mainSaga)
+  })
 
 render(
   <Provider store={store}>
