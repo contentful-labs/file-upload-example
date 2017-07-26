@@ -1,6 +1,9 @@
 dist
 config/*.production.js
 
+yarn.lock
+package-lock.json
+
 # Created by https://www.gitignore.io/api/osx,node
 
 ### OSX ###
