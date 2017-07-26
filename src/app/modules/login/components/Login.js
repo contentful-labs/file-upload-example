@@ -47,12 +47,12 @@ export default class Login extends Component {
             <img src={contentfulLogo} alt='Contentful' />
             <h1>Direct File Upload Example</h1>
             <p>
-              This is an example showing how to upload files directly to the <a href="https://www.contentful.com">Contentful headless CMS</a>.
+              This is an example showing how to upload files directly to the <a href='https://www.contentful.com'>Contentful headless CMS</a>.
               To start using it you need to create an account and enter your Content Management API credentials later on.
             </p>
             <p>
               This example uses Preact, Redux and Redux Saga.
-              The source code is open source and you can find it on <a href="https://github.com/contentful-labs/file-upload-example">GitHub</a>.
+              The source code is open source and you can find it on <a href='https://github.com/contentful-labs/file-upload-example'>GitHub</a>.
             </p>
           </div>
           <div className={styles.group}>
