@@ -13,7 +13,8 @@
     "clean": "rimraf dist",
     "deploy": "npm run build && gh-pages -d dist/app",
     "dev": "NODE_ENV=development nodemon src/scripts/dev-server.js --exec babel-node --watch src/scripts/dev-server.js --watch config --watch webpack.config.js",
-    "prod": "NODE_ENV=production node dist/scripts/prod-server.js"
+    "prod": "NODE_ENV=production node dist/scripts/prod-server.js",
+    "test": "npm run lint && npm run build"
   },
   "engines": {
     "node": ">= 7.6.0"
