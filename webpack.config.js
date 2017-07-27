@@ -114,7 +114,8 @@ const webpackConfig = {
     alias: {
       'react': 'preact-compat',
       'react-dom': 'preact-compat'
-    }
+    },
+    mainFields: ['module', 'main']
   },
   plugins: [
     new HtmlWebpackPlugin({
