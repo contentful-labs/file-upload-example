@@ -64,7 +64,7 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
-    "contentful-management": "^4.0.0",
+    "contentful-management": "^3.3.3",
     "eslint-config-standard-preact": "^1.1.6",
     "normalize.css": "^7.0.0",
     "preact": "^8.2.1",
