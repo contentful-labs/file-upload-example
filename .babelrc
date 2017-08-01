@@ -3,7 +3,8 @@
     "transform-class-properties",
     "transform-object-rest-spread",
     "transform-async-to-generator",
-    ["transform-react-jsx", { "pragma":"h" }]
+    ["transform-react-jsx", { "pragma":"h" }],
+    "lodash"
   ],
   "presets": [
     "react",

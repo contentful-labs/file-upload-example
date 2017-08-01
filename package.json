@@ -46,6 +46,7 @@
     "koa": "^2.2.0",
     "koa-mount": "^3.0.0",
     "koa-static": "^4.0.1",
+    "lodash-webpack-plugin": "^0.11.4",
     "nodemon": "^1.11.0",
     "postcss": "^6.0.8",
     "postcss-browser-reporter": "^0.5.0",
@@ -64,7 +65,7 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
-    "contentful-management": "^3.3.3",
+    "contentful-management": "^4.0.0",
     "eslint-config-standard-preact": "^1.1.6",
     "normalize.css": "^7.0.0",
     "preact": "^8.2.1",

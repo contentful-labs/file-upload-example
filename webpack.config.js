@@ -2,6 +2,7 @@ const { join, resolve } = require('path')
 const Webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('sane-config')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 const { webpackSource, webpackDestination, webpackPublicPath } = config.paths
 
@@ -109,11 +110,21 @@ const webpackConfig = {
   resolve: {
     modules: [
       webpackSource,
-      'node_modules'
+      'node_modules',
+      resolve(__dirname, '..', '..', 'ecosystem', 'contentful-management', 'node-modules'),
+      resolve(__dirname, '..', '..', 'ecosystem', 'contentful-sdk-core', 'node-modules')
     ],
     alias: {
       'react': 'preact-compat',
-      'react-dom': 'preact-compat'
+      'react-dom': 'preact-compat',
+      'lodash': 'lodash-es',
+      'lodash.reduce': 'lodash-es/reduce',
+      'lodash.merge': 'lodash-es/merge',
+      'lodash.set': 'lodash-es/set',
+      'lodash.unset': 'lodash-es/unset',
+      'lodash.get': 'lodash-es/get',
+      'lodash.isfunction': 'lodash-es/isFunction',
+      'lodash.isobject': 'lodash-es/isObject'
     }
   },
   plugins: [
@@ -126,7 +137,8 @@ const webpackConfig = {
     }),
     new Webpack.DefinePlugin({
       APP_CONFIG: JSON.stringify(config)
-    })
+    }),
+    new LodashModuleReplacementPlugin()
   ]
 }
 
