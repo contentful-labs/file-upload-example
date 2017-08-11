@@ -2,11 +2,10 @@
   "plugins": [
     "transform-class-properties",
     "transform-object-rest-spread",
-    "transform-async-to-generator",
-    ["transform-react-jsx", { "pragma":"h" }]
+    "transform-async-to-generator"
   ],
   "presets": [
-    "react",
+    "preact",
     "es2015"
   ]
 }
