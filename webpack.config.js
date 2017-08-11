@@ -11,7 +11,7 @@ const __PROD__ = process.env.NODE_ENV === 'production'
 
 const webpackConfig = {
   entry: {
-    app: ['babel-polyfill', join(webpackSource, 'app.js')]
+    app: [join(webpackSource, 'app.js')]
   },
   devtool: __DEV__ ? '#cheap-eval-source-map' : false,
   output: {

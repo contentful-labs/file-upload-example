@@ -7,6 +7,13 @@
   ],
   "presets": [
     "preact",
-    "es2015"
+    ["env", {
+      "useBuiltIns": "entry",
+      "targets": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    }]
   ]
 }
