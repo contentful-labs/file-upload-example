@@ -137,7 +137,23 @@ const webpackConfig = {
     new Webpack.DefinePlugin({
       APP_CONFIG: JSON.stringify(config)
     }),
-    new LodashModuleReplacementPlugin()
+    new LodashModuleReplacementPlugin(),
+    new Webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: ({ resource }) => (
+        resource !== undefined &&
+        resource.indexOf('node_modules') !== -1
+      )
+    }),
+    new Webpack.optimize.CommonsChunkPlugin({
+      name: 'main',
+      children: true,
+      async: true,
+      minChunks: ({ resource }) => (
+        resource !== undefined &&
+        resource.indexOf('node_modules') !== -1
+      )
+    })
   ]
 }
 

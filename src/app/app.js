@@ -2,6 +2,7 @@ import 'babel-polyfill'
 
 import { h, render } from 'preact'
 import Router from 'preact-router'
+import AsyncRoute from 'preact-async-route'
 
 import { Provider } from 'preact-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -15,8 +16,8 @@ import filter from 'redux-storage-decorator-filter'
 import mainSaga from 'store/mainSaga'
 import reducers from 'store/reducers'
 import Login from 'modules/login'
-import Assets from 'modules/assets'
 import Busy from 'components/busy'
+import LoadingIndicator from 'components/loading-indicator'
 
 import './assets/styles/base.css'
 
@@ -55,7 +56,11 @@ render(
     <div>
       <Router>
         <Login path={APP_CONFIG.paths.webpackPublicPath} />
-        <Assets path={`${APP_CONFIG.paths.webpackPublicPath}assets`} />
+        <AsyncRoute
+          path={`${APP_CONFIG.paths.webpackPublicPath}assets`}
+          getComponent={() => System.import(/* webpackChunkName: "assets" */ 'modules/assets').then(module => module.default)}
+          loading={() => <LoadingIndicator />}
+        />
       </Router>
       <Busy />
     </div>
