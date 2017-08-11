@@ -117,14 +117,13 @@ const webpackConfig = {
     alias: {
       'react': 'preact-compat',
       'react-dom': 'preact-compat',
-      'lodash': 'lodash-es',
-      'lodash.reduce': 'lodash-es/reduce',
-      'lodash.merge': 'lodash-es/merge',
-      'lodash.set': 'lodash-es/set',
-      'lodash.unset': 'lodash-es/unset',
-      'lodash.get': 'lodash-es/get',
-      'lodash.isfunction': 'lodash-es/isFunction',
-      'lodash.isobject': 'lodash-es/isObject'
+      'lodash.reduce': 'lodash/reduce',
+      'lodash.merge': 'lodash/merge',
+      'lodash.set': 'lodash/set',
+      'lodash.unset': 'lodash/unset',
+      'lodash.get': 'lodash/get',
+      'lodash.isfunction': 'lodash/isFunction',
+      'lodash.isobject': 'lodash/isObject'
     }
   },
   plugins: [
