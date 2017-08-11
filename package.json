@@ -65,7 +65,7 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
-    "contentful-management": "^4.0.0",
+    "contentful-management": "4.0.0-rc2",
     "normalize.css": "^7.0.0",
     "preact": "^8.2.1",
     "preact-compat": "^3.14.3",
