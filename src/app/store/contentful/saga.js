@@ -51,7 +51,7 @@ function * displayAssetsSaga (action) {
     yield put(setBusyMessage({message: 'Loading Assets...'}))
     const assets = yield call(fetchAssets)
     yield put(actions.setAssets({assets}))
-    route(`${APP_CONFIG.paths.webpackPublicPath}assets`)
+    route('/assets')
     yield put(actions.DISPLAY_ASSETS.success())
     yield put(setBusyState({state: false}))
   } catch (error) {

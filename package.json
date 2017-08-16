@@ -65,6 +65,7 @@
   },
   "dependencies": {
     "contentful-management": "^3.3.3",
+    "history": "^4.6.3",
     "moment": "^2.18.1",
     "normalize.css": "^7.0.0",
     "preact": "^8.2.1",

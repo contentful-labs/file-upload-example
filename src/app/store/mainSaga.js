@@ -10,7 +10,7 @@ function * initSaga () {
   const spaceId = yield select(selectors.selectSpaceId)
 
   if (!accessToken || !spaceId) {
-    route(`${APP_CONFIG.paths.webpackPublicPath}`)
+    route('/')
     return
   }
 
