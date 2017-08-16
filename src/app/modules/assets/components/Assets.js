@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-import moment from 'moment'
+import { distanceInWordsToNow } from 'date-fns'
 import proptypes from 'proptypes'
 import Dropzone from 'react-dropzone'
 
@@ -29,7 +29,8 @@ export default class Assets extends Component {
       const localeTitle = Object.keys(title)[0]
       const localizedTitle = title[localeTitle]
       const ext = /\.(.*)$/.exec(file[localeFile].fileName)[1]
-      const created = `created ${moment(createdAt).fromNow()}`
+      const formattedDate = distanceInWordsToNow(createdAt, { includeSeconds: true })
+      const created = `created ${formattedDate} ago`
 
       let preview = (
         <div className={styles.fileIcon}>
