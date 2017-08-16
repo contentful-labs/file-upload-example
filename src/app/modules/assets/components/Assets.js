@@ -1,4 +1,6 @@
 import { h, Component } from 'preact'
+
+import moment from 'moment'
 import proptypes from 'proptypes'
 import Dropzone from 'react-dropzone'
 
@@ -21,10 +23,13 @@ export default class Assets extends Component {
       if (!asset.fields.hasOwnProperty('file')) {
         return null
       }
-      const localeFile = Object.keys(asset.fields.file)[0]
-      const localeTitle = Object.keys(asset.fields.title)[0]
-      const title = asset.fields.title[localeTitle]
-      const ext = /\.(.*)$/.exec(asset.fields.file[localeFile].fileName)[1]
+      const { file, title } = asset.fields
+      const { createdAt } = asset.sys
+      const localeFile = Object.keys(file)[0]
+      const localeTitle = Object.keys(title)[0]
+      const localizedTitle = title[localeTitle]
+      const ext = /\.(.*)$/.exec(file[localeFile].fileName)[1]
+      const created = `created ${moment(createdAt).fromNow()}`
 
       let preview = (
         <div className={styles.fileIcon}>
@@ -32,17 +37,26 @@ export default class Assets extends Component {
         </div>
       )
       if (
-        asset.fields.file[localeFile].contentType.indexOf('image') === 0 &&
-        asset.fields.file[localeFile].hasOwnProperty('url')
+        file[localeFile].contentType.indexOf('image') === 0 &&
+        file[localeFile].hasOwnProperty('url')
       ) {
-        const url = `${asset.fields.file[localeFile].url}?w=800&h=600&q=80&fm=jpg&fl=progressive&fit=fill`
-        preview = <img src={url} alt={title} />
+        const url = `${file[localeFile].url}?w=800&h=600&q=80&fm=jpg&fl=progressive&fit=fill`
+        preview = <img src={url} alt={localizedTitle} />
       }
       return (
-        <li key={asset.sys.id}>
-          <h3>{title}</h3>
+        <div key={asset.sys.id} className={styles.asset}>
+          <div className={styles.label}>
+            <div className={styles.labelContent}>
+              <div className={styles.title}>
+                {localizedTitle}
+              </div>
+              <div className={styles.created}>
+                {created}
+              </div>
+            </div>
+          </div>
           {preview}
-        </li>
+        </div>
       )
     })
     return (
@@ -55,9 +69,9 @@ export default class Assets extends Component {
         >
           <a className={styles.changeSpaceLink} href={`${APP_CONFIG.paths.webpackPublicPath}`}>Change space</a>
           <h1>Your assets:</h1>
-          <ul className={styles.list}>
+          <div className={styles.assets}>
             {assetsList}
-          </ul>
+          </div>
         </Dropzone>
       </div>
     )
