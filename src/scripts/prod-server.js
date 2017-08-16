@@ -1,6 +1,7 @@
 import Koa from 'koa'
 import serve from 'koa-static'
 import mount from 'koa-mount'
+import compress from 'koa-compress'
 import config from 'sane-config'
 
 const { serverHost, serverPort } = config.app
@@ -9,6 +10,8 @@ const { webpackDestination, webpackPublicPath } = config.paths
 const server = new Koa()
 const app = new Koa()
 app.use(serve(webpackDestination))
+
+server.use(compress())
 
 server.use(mount(webpackPublicPath, app))
 
