@@ -23,6 +23,10 @@ export default class Login extends Component {
     this._onHostUploadChange = this._onHostUploadChange.bind(this)
     this._onSpaceIdChange = this._onSpaceIdChange.bind(this)
     this._onFormSubmit = this._onFormSubmit.bind(this)
+
+    this.state = {
+      hidden: true
+    }
   }
   _onAccessTokenChange (e) {
     this.props.setAccessToken(e.target.value.trim())
@@ -73,24 +77,35 @@ export default class Login extends Component {
               value={spaceId}
               onChange={this._onSpaceIdChange} />
           </div>
-          <div className={styles.group}>
-            <label htmlFor='host'>Host :</label>
-            <input
-              id='host'
-              type='text'
-              value={host}
-              required
-              onChange={this._onHostChange} />
-          </div>
-          <div className={styles.group}>
-            <label htmlFor='hostUpload'>Upload Host :</label>
-            <input
-              id='hostUpload'
-              type='text'
-              required
-              value={hostUpload}
-              onChange={this._onHostUploadChange} />
-          </div>
+          { !this.state.hidden
+            ? (
+              <div>
+                <div className={styles.group}>
+                  <label htmlFor='host'>Host :</label>
+                  <input
+                    id='host'
+                    type='text'
+                    value={host}
+                    required
+                    onChange={this._onHostChange} />
+                </div>
+                <div className={styles.group}>
+                  <label htmlFor='hostUpload'>Upload Host :</label>
+                  <input
+                    id='hostUpload'
+                    type='text'
+                    required
+                    value={hostUpload}
+                    onChange={this._onHostUploadChange} />
+                </div>
+              </div>
+            ) : (
+              <div className={styles.reveal}>
+                <span onClick={() => this.setState({
+                  hidden: false
+                })}>Change host</span>
+              </div>
+            ) }
           <div className={styles.group}>
             <input type='submit' value='Connect' />
           </div>
