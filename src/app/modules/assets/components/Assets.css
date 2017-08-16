@@ -1,53 +1,113 @@
 @import '../../../assets/styles/variables.css';
 
-.list {
+:root {
+  --labelBackgroundColor: color(white a(85%));
+  --labelHeight: 36px;
+}
+
+.assets {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   margin: 0;
   padding: 0;
 
-  & > li {
-    position: relative;
-    padding: 0;
-
-    & > h3 {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0.5em;
-      color: color(white a(85%));
-      text-shadow: 0 0 5px color(black a(60%));
-      text-align: center;
-      text-transform: capitalize;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+  & > * {
+    flex: 0 0 100%;
+    @media (min-width: 480px) {
+      flex: 0 0 50%;
     }
-
-    & > img {
-      max-width: 100%;
-      height: auto;
-      display: block;
+    @media (min-width: 700px) {
+      flex: 0 0 33%;
     }
-  }
-
-  & > li {
-    flex: 0 0 50%;
-  }
-
-  @media (min-width: 480px) {
-    & > li {
+    @media (min-width: 1200px) {
       flex: 0 0 25%;
     }
   }
 }
 
-.fileIcon {
+.asset {
   position: relative;
+  padding: 0;
+
+  &:before {
+    display: block;
+    content: '';
+    width: 0;
+    float: left;
+    padding-bottom: 66.6%;
+  }
+
+  & > img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  
+  height: var(--labelHeight);
+  max-width: 75%;
+
+  background: var(--labelBackgroundColor);
+
+  &:before {
+    left: calc(var(--labelHeight) * -1);
+    border-left-color: transparent;
+  }
+
+  &:after {
+    right: calc(var(--labelHeight) * -1);
+    border-right-color: transparent;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    width: 0;
+    position: absolute;
+    top: 0;
+
+    border: calc(var(--labelHeight) / 2) solid var(--labelBackgroundColor);
+    border-top-color: transparent;
+  }
+}
+
+.labelContent {
+  height: var(--labelHeight);
+  margin: 0;
+
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.title {
+  padding-top: 4px;
+  line-height: 18px;
+}
+
+.created {
+  color: #666;
+  font-size: 0.65em;
+  text-align: center;
+  line-height: 14px;
+}
+
+.fileIcon {
   width: 60px;
   height: 90px;
-  margin: var(--layout-gutter) auto calc(var(--layout-gutter) * 5);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: #56AED2;
   text-align: center;
   line-height: 90px;
