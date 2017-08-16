@@ -14,3 +14,11 @@ fieldset {
   padding: var(--layout-gutter);
   margin: 0;
 }
+
+input[type="text"] {
+  border: none;
+  color: var(--color-input);
+  padding: 0 0.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+}

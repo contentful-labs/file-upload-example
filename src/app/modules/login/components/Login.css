@@ -41,3 +41,16 @@
     flex: 5 1 auto;
   }
 }
+
+.reveal {
+  margin-bottom: 1vw;
+
+  text-align: right;
+  font-size: 0.8em;
+  line-height: 2em;
+  color: #666;
+
+  & span {
+    cursor: pointer;
+  }
+}
