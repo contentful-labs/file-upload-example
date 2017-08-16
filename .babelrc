@@ -3,10 +3,17 @@
     "transform-class-properties",
     "transform-object-rest-spread",
     "transform-async-to-generator",
-    ["transform-react-jsx", { "pragma":"h" }]
+    "lodash"
   ],
   "presets": [
-    "react",
-    "es2015"
+    "preact",
+    ["env", {
+      "useBuiltIns": "entry",
+      "targets": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    }]
   ]
 }

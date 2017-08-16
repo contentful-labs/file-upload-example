@@ -2,6 +2,7 @@ const { join, resolve } = require('path')
 const Webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('sane-config')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 const { webpackSource, webpackDestination, webpackPublicPath } = config.paths
 
@@ -10,7 +11,7 @@ const __PROD__ = process.env.NODE_ENV === 'production'
 
 const webpackConfig = {
   entry: {
-    app: ['babel-polyfill', join(webpackSource, 'app.js')]
+    app: [join(webpackSource, 'app.js')]
   },
   devtool: __DEV__ ? '#cheap-eval-source-map' : false,
   output: {
@@ -109,13 +110,21 @@ const webpackConfig = {
   resolve: {
     modules: [
       webpackSource,
-      'node_modules'
+      'node_modules',
+      resolve(__dirname, '..', '..', 'ecosystem', 'contentful-management', 'node-modules'),
+      resolve(__dirname, '..', '..', 'ecosystem', 'contentful-sdk-core', 'node-modules')
     ],
     alias: {
       'react': 'preact-compat',
-      'react-dom': 'preact-compat'
-    },
-    mainFields: ['module', 'main']
+      'react-dom': 'preact-compat',
+      'lodash.reduce': 'lodash/reduce',
+      'lodash.merge': 'lodash/merge',
+      'lodash.set': 'lodash/set',
+      'lodash.unset': 'lodash/unset',
+      'lodash.get': 'lodash/get',
+      'lodash.isfunction': 'lodash/isFunction',
+      'lodash.isobject': 'lodash/isObject'
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -127,6 +136,23 @@ const webpackConfig = {
     }),
     new Webpack.DefinePlugin({
       APP_CONFIG: JSON.stringify(config)
+    }),
+    new LodashModuleReplacementPlugin(),
+    new Webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: ({ resource }) => (
+        resource !== undefined &&
+        resource.indexOf('node_modules') !== -1
+      )
+    }),
+    new Webpack.optimize.CommonsChunkPlugin({
+      name: 'main',
+      children: true,
+      async: true,
+      minChunks: ({ resource }) => (
+        resource !== undefined &&
+        resource.indexOf('node_modules') !== -1
+      )
     })
   ]
 }
