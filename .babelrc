@@ -2,11 +2,16 @@
   "plugins": [
     "transform-class-properties",
     "transform-object-rest-spread",
-    "transform-async-to-generator",
     "date-fns"
   ],
   "presets": [
     "preact",
-    "es2015"
+    ["env", {
+      "targets": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    }]
   ]
 }
