@@ -1,14 +1,15 @@
 import { h, render } from 'preact'
 import Router from 'preact-router'
-
 import { Provider } from 'preact-redux'
+
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-
 import * as storage from 'redux-storage'
 import createEngineLocalStorage from 'redux-storage-engine-localstorage'
 import debounce from 'redux-storage-decorator-debounce'
 import filter from 'redux-storage-decorator-filter'
+
+import { createHashHistory } from 'history'
 
 import mainSaga from 'store/mainSaga'
 import reducers from 'store/reducers'
@@ -51,9 +52,9 @@ load(store)
 render(
   <Provider store={store}>
     <div>
-      <Router>
-        <Login path={APP_CONFIG.paths.webpackPublicPath} />
-        <Assets path={`${APP_CONFIG.paths.webpackPublicPath}assets`} />
+      <Router history={createHashHistory()}>
+        <Login path={'/'} />
+        <Assets path={'/assets'} />
       </Router>
       <Busy />
     </div>

@@ -67,7 +67,7 @@ export default class Assets extends Component {
           className={styles.dropzone}
           activeClassName={styles.dropzoneActive}
         >
-          <a className={styles.changeSpaceLink} href={`${APP_CONFIG.paths.webpackPublicPath}`}>Change space</a>
+          <a className={styles.changeSpaceLink} href={'/'}>Change space</a>
           <h1>Your assets:</h1>
           <div className={styles.assets}>
             {assetsList}
