@@ -13,6 +13,7 @@
     "clean": "rimraf dist",
     "deploy": "npm run build && gh-pages -d dist/app",
     "dev": "NODE_ENV=development nodemon src/scripts/dev-server.js --exec babel-node --watch src/scripts/dev-server.js --watch config --watch webpack.config.js",
+    "lint": "eslint src",
     "prod": "NODE_ENV=production node dist/scripts/prod-server.js",
     "test": "npm run lint && npm run build"
   },
