@@ -7,7 +7,7 @@
   "presets": [
     "preact",
     ["env", {
-      "useBuiltIns": true,
+      "useBuiltIns": "entry",
       "targets": {
         "browsers": [
           "last 2 versions"
