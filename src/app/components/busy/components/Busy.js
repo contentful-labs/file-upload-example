@@ -1,9 +1,7 @@
 import { h, Component } from 'preact'
 import proptypes from 'proptypes'
 
-import styles from './Busy.css'
-
-import logo from 'assets/images/contentful-logo-only.svg'
+import LoadingIndicator from 'components/loading-indicator'
 
 export default class Busy extends Component {
   static propTypes = {
@@ -16,16 +14,7 @@ export default class Busy extends Component {
     }
     return (
       <div>
-        <div className={styles.wrapper}>
-          <div className={styles.content}>
-            <div className={styles.logo}>
-              <img src={logo} alt='Contentful' />
-            </div>
-            <div className={styles.message}>
-              {message}
-            </div>
-          </div>
-        </div>
+        <LoadingIndicator message />
       </div>
     )
   }

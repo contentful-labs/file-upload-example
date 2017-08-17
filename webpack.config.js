@@ -1,4 +1,4 @@
-const { join, resolve } = require('path')
+const { resolve } = require('path')
 
 const Webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -13,7 +13,7 @@ const __PROD__ = process.env.NODE_ENV === 'production'
 
 const webpackConfig = {
   entry: {
-    app: [join(webpackSource, 'app.js')],
+    app: [resolve(webpackSource, 'app.js')],
     vendor: [
       'normalize.css'
     ]
@@ -22,7 +22,8 @@ const webpackConfig = {
   output: {
     path: webpackDestination,
     publicPath: webpackPublicPath,
-    filename: __DEV__ ? '[name].js' : '[name]-[chunkhash].js'
+    filename: __DEV__ ? '[name].js' : '[name]-[chunkhash].js',
+    chunkFilename: __DEV__ ? '[name].js' : '[name]-[chunkhash].js'
   },
   performance: {
     hints: __PROD__ ? 'warning' : false
@@ -44,8 +45,8 @@ const webpackConfig = {
       {
         test: /\.css$/,
         exclude: [
-          join(webpackSource, 'assets', 'styles'),
-          /node_modules/
+          /node_modules/,
+          resolve(webpackSource, 'assets', 'styles')
         ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
@@ -67,8 +68,8 @@ const webpackConfig = {
       {
         test: /\.css$/,
         include: [
-          join(webpackSource, 'assets', 'styles'),
-          /node_modules/
+          /node_modules/,
+          resolve(webpackSource, 'assets', 'styles')
         ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
@@ -144,9 +145,26 @@ const webpackConfig = {
       APP_CONFIG: JSON.stringify(config)
     }),
     new ExtractTextPlugin({
-      filename: '[name]-[chunkhash].css'
+      filename: '[name]-[chunkhash].css',
+      allChunks: true
     }),
-    new LodashModuleReplacementPlugin()
+    new LodashModuleReplacementPlugin(),
+    new Webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: ({ resource }) => (
+        resource !== undefined &&
+        resource.indexOf('node_modules') !== -1
+      )
+    }),
+    new Webpack.optimize.CommonsChunkPlugin({
+      name: 'main',
+      children: true,
+      async: true,
+      minChunks: ({ resource }) => (
+        resource !== undefined &&
+        resource.indexOf('node_modules') !== -1
+      )
+    })
   ]
 }
 
