@@ -76,6 +76,7 @@
     "history": "^4.6.3",
     "normalize.css": "^7.0.0",
     "preact": "^8.2.1",
+    "preact-async-route": "^2.0.0",
     "preact-compat": "^3.14.3",
     "preact-redux": "^2.0.1",
     "preact-router": "^2.4.1",

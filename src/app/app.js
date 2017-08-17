@@ -1,6 +1,7 @@
 import 'babel-polyfill'
 
 import { h, render } from 'preact'
+import AsyncRoute from 'preact-async-route'
 import Router from 'preact-router'
 import { Provider } from 'preact-redux'
 
@@ -16,8 +17,8 @@ import { createHashHistory } from 'history'
 import mainSaga from 'store/mainSaga'
 import reducers from 'store/reducers'
 import Login from 'modules/login'
-import Assets from 'modules/assets'
 import Busy from 'components/busy'
+import LoadingIndicator from 'components/loading-indicator'
 
 import './assets/styles/base.css'
 
@@ -56,7 +57,11 @@ render(
     <div>
       <Router history={createHashHistory()}>
         <Login path={'/'} />
-        <Assets path={'/assets'} />
+        <AsyncRoute
+          path={'/assets'}
+          getComponent={() => System.import(/* webpackChunkName: "assets" */ 'modules/assets').then(module => module.default)}
+          loading={() => <LoadingIndicator />}
+        />
       </Router>
       <Busy />
     </div>
