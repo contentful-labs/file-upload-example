@@ -3,6 +3,7 @@ const { join, resolve } = require('path')
 const Webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const config = require('sane-config')
 
 const { webpackSource, webpackDestination, webpackPublicPath } = config.paths
@@ -117,7 +118,15 @@ const webpackConfig = {
     ],
     alias: {
       'react': 'preact-compat',
-      'react-dom': 'preact-compat'
+      'react-dom': 'preact-compat',
+      'lodash-es': 'lodash',
+      'lodash.get': 'lodash/get',
+      'lodash.isfunction': 'lodash/isFunction',
+      'lodash.isobject': 'lodash/isObject',
+      'lodash.merge': 'lodash/merge',
+      'lodash.reduce': 'lodash/reduce',
+      'lodash.set': 'lodash/set',
+      'lodash.unset': 'lodash/unset'
     }
   },
   plugins: [
@@ -131,7 +140,8 @@ const webpackConfig = {
     new Webpack.DefinePlugin({
       APP_CONFIG: JSON.stringify(config)
     }),
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.css'),
+    new LodashModuleReplacementPlugin()
   ]
 }
 

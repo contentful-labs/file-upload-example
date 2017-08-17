@@ -2,7 +2,8 @@
   "plugins": [
     "transform-class-properties",
     "transform-object-rest-spread",
-    "date-fns"
+    "date-fns",
+    "lodash"
   ],
   "presets": [
     "preact",
