@@ -1,5 +1,7 @@
 const { join, resolve } = require('path')
+
 const Webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('sane-config')
 
@@ -41,21 +43,22 @@ const webpackConfig = {
           join(webpackSource, 'assets', 'styles'),
           /node_modules/
         ],
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: true
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: true,
+                minimize: __PROD__
+              }
+            },
+            {
+              loader: 'postcss-loader'
             }
-          },
-          {
-            loader: 'postcss-loader'
-          }
-        ]
+          ]
+        })
       },
       {
         test: /\.css$/,
@@ -63,20 +66,21 @@ const webpackConfig = {
           join(webpackSource, 'assets', 'styles'),
           /node_modules/
         ],
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: true
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: true,
+                minimize: __PROD__
+              }
+            },
+            {
+              loader: 'postcss-loader'
             }
-          },
-          {
-            loader: 'postcss-loader'
-          }
-        ]
+          ]
+        })
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -126,7 +130,8 @@ const webpackConfig = {
     }),
     new Webpack.DefinePlugin({
       APP_CONFIG: JSON.stringify(config)
-    })
+    }),
+    new ExtractTextPlugin('styles.css')
   ]
 }
 
@@ -136,12 +141,21 @@ if (__DEV__) {
 }
 
 if (__PROD__) {
+  webpackConfig.plugins.push(new Webpack.LoaderOptionsPlugin({
+    minimize: true,
+    debug: false
+  }))
   webpackConfig.plugins.push(new Webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production')
+    'process.env.NODE_ENV': JSON.stringify('production')
+  }))
+  webpackConfig.plugins.push(new Webpack.optimize.UglifyJsPlugin({
+    compress: {
+      screw_ie8: true,
+      warnings: false
     }
   }))
   webpackConfig.plugins.push(new Webpack.optimize.AggressiveMergingPlugin())
+  webpackConfig.plugins.push(new Webpack.optimize.ModuleConcatenationPlugin())
 }
 
 module.exports = webpackConfig
