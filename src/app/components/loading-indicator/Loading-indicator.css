@@ -1,0 +1,51 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.content {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  width: 20vw;
+  max-width: 200px;
+  animation-name: rotate;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  animation-iteration-count: infinite;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+
+  & img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.message {
+  margin: 10vh 0 0 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  color: color(white a(85%));
+  text-shadow: 0 0 5px color(black a(60%));
+}
+
+@keyframes :local(rotate) {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
