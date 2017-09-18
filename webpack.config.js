@@ -131,7 +131,8 @@ const webpackConfig = {
     new Webpack.DefinePlugin({
       APP_CONFIG: JSON.stringify(config)
     }),
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.css'),
+    new Webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /(en|de)(?!-)/)
   ]
 }
 
