@@ -13,7 +13,10 @@ const __PROD__ = process.env.NODE_ENV === 'production'
 
 const webpackConfig = {
   entry: {
-    app: [join(webpackSource, 'app.js')]
+    app: [join(webpackSource, 'app.js')],
+    vendor: [
+      'normalize.css'
+    ]
   },
   devtool: __DEV__ ? '#cheap-eval-source-map' : false,
   output: {
@@ -140,7 +143,9 @@ const webpackConfig = {
     new Webpack.DefinePlugin({
       APP_CONFIG: JSON.stringify(config)
     }),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin({
+      filename: '[name]-[chunkhash].css'
+    }),
     new LodashModuleReplacementPlugin()
   ]
 }
@@ -166,6 +171,17 @@ if (__PROD__) {
   }))
   webpackConfig.plugins.push(new Webpack.optimize.AggressiveMergingPlugin())
   webpackConfig.plugins.push(new Webpack.optimize.ModuleConcatenationPlugin())
+  webpackConfig.plugins.push(new Webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    minChunks: ({ resource }) => (
+      resource !== undefined &&
+      resource.indexOf('node_modules') !== -1
+    )
+  }))
+  webpackConfig.plugins.push(new Webpack.optimize.CommonsChunkPlugin({
+    name: 'manifest',
+    minChunks: Infinity
+  }))
 }
 
 module.exports = webpackConfig
