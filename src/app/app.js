@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+
 import { h, render } from 'preact'
 import Router from 'preact-router'
 import { Provider } from 'preact-redux'
