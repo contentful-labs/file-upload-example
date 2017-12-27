@@ -50,21 +50,11 @@
   left: 50%;
   transform: translateX(-50%);
   bottom: 0;
-  
+
   height: var(--labelHeight);
   max-width: 75%;
 
   background: var(--labelBackgroundColor);
-
-  &:before {
-    left: calc(var(--labelHeight) * -1);
-    border-left-color: transparent;
-  }
-
-  &:after {
-    right: calc(var(--labelHeight) * -1);
-    border-right-color: transparent;
-  }
 
   &:before,
   &:after {
@@ -76,6 +66,16 @@
 
     border: calc(var(--labelHeight) / 2) solid var(--labelBackgroundColor);
     border-top-color: transparent;
+  }
+
+  &:before {
+    left: calc(var(--labelHeight) * -1);
+    border-left-color: transparent;
+  }
+
+  &:after {
+    right: calc(var(--labelHeight) * -1);
+    border-right-color: transparent;
   }
 }
 

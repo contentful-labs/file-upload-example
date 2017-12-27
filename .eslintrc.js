@@ -16,5 +16,8 @@ module.exports = {
         "react": {
             "pragma": "h"
         }
+    },
+    "globals": {
+        "System": true
     }
 };
