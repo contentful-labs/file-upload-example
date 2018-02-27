@@ -88,7 +88,7 @@
     "webpack-dev-server": "^3.0.0"
   },
   "dependencies": {
-    "contentful-management": "^4.2.2",
+    "contentful-management": "^5.0.0-beta0",
     "date-fns": "^1.28.5",
     "history": "^4.6.3",
     "normalize.css": "^8.0.0",

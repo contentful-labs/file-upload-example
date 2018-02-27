@@ -25,6 +25,7 @@ function * initClientSaga (action) {
     yield put(setBusyMessage({message: 'Initializing CMA Client'}))
     const accessToken = yield select(selectors.selectAccessToken)
     const spaceId = yield select(selectors.selectSpaceId)
+    const environment = yield select(selectors.selectEnvironment)
     let host = yield select(selectors.selectHost)
     let hostUpload = yield select(selectors.selectHostUpload)
 
@@ -35,7 +36,7 @@ function * initClientSaga (action) {
       throw new Error('AccessToken and SpaceID must be provided.')
     }
 
-    yield initClient(accessToken, spaceId, host, hostUpload)
+    yield initClient(accessToken, spaceId, environment, host, hostUpload)
     yield put(actions.INIT_CLIENT.success())
     yield put(actions.DISPLAY_ASSETS.request())
   } catch (error) {

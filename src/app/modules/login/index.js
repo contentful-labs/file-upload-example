@@ -1,7 +1,7 @@
 import { connect } from 'preact-redux'
 
-import { selectAccessToken, selectSpaceId, selectHost, selectHostUpload } from 'store/contentful/selectors'
-import { setAccessToken, setSpaceId, setHost, setHostUpload, INIT_CLIENT } from 'store/contentful/actions'
+import { selectAccessToken, selectSpaceId, selectEnvironment, selectHost, selectHostUpload } from 'store/contentful/selectors'
+import { setAccessToken, setSpaceId, setEnvironment, setHost, setHostUpload, INIT_CLIENT } from 'store/contentful/actions'
 
 import Login from './components/Login'
 
@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     accessToken: selectAccessToken(state),
     spaceId: selectSpaceId(state),
+    environment: selectEnvironment(state),
     host: selectHost(state),
     hostUpload: selectHostUpload(state)
   }
@@ -34,6 +35,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     setSpaceId: (spaceId) => {
       dispatch(setSpaceId({
         spaceId
+      }))
+    },
+    setEnvironment: (environment) => {
+      dispatch(setEnvironment({
+        environment
       }))
     },
     initClient: () => {

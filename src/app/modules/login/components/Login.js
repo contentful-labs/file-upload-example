@@ -11,6 +11,7 @@ export default class Login extends Component {
     host: proptypes.string.isRequired,
     hostUpload: proptypes.string.isRequired,
     setAccessToken: proptypes.func.isRequired,
+    setEnvironment: proptypes.func.isRequired,
     setHost: proptypes.func.isRequired,
     setHostUpload: proptypes.func.isRequired,
     setSpaceId: proptypes.func.isRequired,
@@ -19,6 +20,7 @@ export default class Login extends Component {
   constructor (props) {
     super(props)
     this._onAccessTokenChange = this._onAccessTokenChange.bind(this)
+    this._onEnvironmentChange = this._onEnvironmentChange.bind(this)
     this._onHostChange = this._onHostChange.bind(this)
     this._onHostUploadChange = this._onHostUploadChange.bind(this)
     this._onSpaceIdChange = this._onSpaceIdChange.bind(this)
@@ -40,10 +42,13 @@ export default class Login extends Component {
   _onSpaceIdChange (e) {
     this.props.setSpaceId(e.target.value.trim())
   }
+  _onEnvironmentChange (e) {
+    this.props.setEnvironment(e.target.value.trim())
+  }
   _onFormSubmit () {
     this.props.initClient()
   }
-  render ({ accessToken, spaceId, host, hostUpload }) {
+  render ({ accessToken, spaceId, environment, host, hostUpload }) {
     return (
       <div>
         <form className={styles.wrapper} onSubmit={this._onFormSubmit}>
@@ -76,6 +81,15 @@ export default class Login extends Component {
               required
               value={spaceId}
               onChange={this._onSpaceIdChange} />
+          </div>
+          <div className={styles.group}>
+            <label htmlFor='environment'>Environment:</label>
+            <input
+              id='environment'
+              type='text'
+              required
+              value={environment}
+              onChange={this._onEnvironmentChange} />
           </div>
           { !this.state.hidden
             ? (

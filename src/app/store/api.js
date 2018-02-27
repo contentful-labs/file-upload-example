@@ -3,10 +3,11 @@ import { createClient } from 'contentful-management'
 let client = null
 let space = null
 
-export async function initClient (accessToken, spaceId, host, hostUpload) {
+export async function initClient (accessToken, spaceId, environment, host, hostUpload) {
   try {
     client = createClient({
       accessToken,
+      environment,
       host,
       hostUpload
     })
