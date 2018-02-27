@@ -1,5 +1,6 @@
 # File Upload Example
-
+[![Build Status](https://travis-ci.org/contentful-labs/file-upload-example.svg?branch=master)](https://travis-ci.org/contentful-labs/file-upload-example)
+[![codecov](https://codecov.io/gh/contentful-labs/file-upload-example/branch/master/graph/badge.svg)](https://codecov.io/gh/contentful-labs/file-upload-example)
 [![dependencies Status](https://david-dm.org/contentful-labs/file-upload-example/status.svg)](https://david-dm.org/contentful-labs/file-upload-example)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
