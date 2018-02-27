@@ -10,8 +10,12 @@ module.exports = {
     "plugins": [
         "standard",
         "babel",
-        "react"
+        "react",
+        "cypress"
     ],
+    "env": {
+        "cypress/globals": true
+    },
     "settings": {
         "react": {
             "pragma": "h"
