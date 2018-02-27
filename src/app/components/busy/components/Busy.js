@@ -14,7 +14,7 @@ export default class Busy extends Component {
     }
     return (
       <div>
-        <LoadingIndicator message />
+        <LoadingIndicator message={message} />
       </div>
     )
   }

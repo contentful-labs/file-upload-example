@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Busy - is busy 1`] = `
+<div>
+  <div>
+    <div class="wrapper">
+      <div class="content">
+        <div class="logo">
+          <img src="test-file-stub" alt="Contentful" />
+        </div>
+        <div class="message">doing some heavy lifting over here</div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Busy - not busy 1`] = `""`;

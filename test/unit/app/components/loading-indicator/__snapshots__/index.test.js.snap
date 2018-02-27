@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingIndicator 1`] = `
+<div>
+  <div class="wrapper">
+    <div class="content">
+      <div class="logo">
+        <img src="test-file-stub" alt="Contentful" />
+      </div>
+      <div class="message">Pretty busy loading</div>
+    </div>
+  </div>
+</div>
+`;
