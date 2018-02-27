@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login 1`] = `
+<div>
+  <form class="wrapper">
+    <div class="header">
+      <img src="test-file-stub" alt="Contentful" />
+      <h1>Direct File Upload Example</h1>
+      <p>This is an example showing how to upload files directly to the
+        <a href="https://www.contentful.com">Contentful headless CMS</a>. To start using it you need to create an account
+        and enter your Content Management API credentials later on.</p>
+      <p>This example uses Preact, Redux and Redux Saga. The source code is open
+        source and you can find it on
+        <a href="https://github.com/contentful-labs/file-upload-example">GitHub</a>.</p>
+    </div>
+    <div class="group">
+      <label htmlFor="access-token">Access Token:</label>
+      <input id="access-token" type="text" required value="accessToken"
+      />
+    </div>
+    <div class="group">
+      <label htmlFor="space-id">Space ID:</label>
+      <input id="space-id" type="text" required value="spaceId"
+      />
+    </div>
+    <div class="reveal">
+      <span>Change host</span>
+    </div>
+    <div class="group">
+      <input type="submit" value="Connect" />
+    </div>
+  </form>
+</div>
+`;

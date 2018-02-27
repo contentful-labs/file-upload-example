@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Assets - Empty 1`] = `
+<div>
+  <div class="dropzone">
+    <a class="changeSpaceLink" href="/">Change space</a>
+    <h1>Your assets:</h1>
+    <div class="assets"></div>
+    <input type="file" style="display: none;" multiple autoComplete="off"
+    />
+  </div>
+</div>
+`;
+
+exports[`Assets - Filled 1`] = `
+<div>
+  <div class="dropzone">
+    <a class="changeSpaceLink" href="/">Change space</a>
+    <h1>Your assets:</h1>
+    <div class="assets">
+      <div class="asset">
+        <div class="label">
+          <div class="labelContent">
+            <div class="title">totally valid asset</div>
+            <div class="created">created less than 5 seconds ago</div>
+          </div>
+        </div>
+        <img src="http://example.com/awesome-image.jpg?w=800&amp;h=600&amp;q=80&amp;fm=jpg&amp;fl=progressive&amp;fit=fill"
+        alt="totally valid asset" />
+      </div>
+    </div>
+    <input type="file" style="display: none;" multiple autoComplete="off"
+    />
+  </div>
+</div>
+`;
