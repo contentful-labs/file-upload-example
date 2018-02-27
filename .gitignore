@@ -1,6 +1,9 @@
 dist
 config/*.production.js
 
+cypress
+coverage
+
 yarn.lock
 package-lock.json
 

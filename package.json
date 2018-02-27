@@ -15,9 +15,14 @@
     "dev": "NODE_ENV=development nodemon src/scripts/dev-server.js --exec babel-node --watch src/scripts/dev-server.js --watch config --watch webpack.config.js",
     "lint": "eslint src",
     "prod": "NODE_ENV=production node dist/scripts/prod-server.js",
-    "test": "npm run lint && npm run test:unit && npm run build",
+    "pretest": "npm run build",
+    "test": "npm run lint && npm run test:unit && npm run test:e2e",
     "test:unit": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:e2e": "start-server-and-test prod http://localhost:8080/file-upload-example/ test:e2e:run",
+    "test:e2e:dev": "start-server-and-test prod http://localhost:8080/file-upload-example/ test:e2e:open",
+    "test:e2e:run": "cypress run --env spaceId=$FILE_UPLOAD_E2E_SPACE_ID,accessToken=$FILE_UPLOAD_E2E_CMA_TOKEN",
+    "test:e2e:open": "cypress open --env spaceId=$FILE_UPLOAD_E2E_SPACE_ID,accessToken=$FILE_UPLOAD_E2E_CMA_TOKEN"
   },
   "engines": {
     "node": ">= 7.6.0"
@@ -38,10 +43,12 @@
     "babel-preset-env": "7.0.0-beta.3",
     "babel-preset-preact": "^1.1.0",
     "css-loader": "^0.28.4",
+    "cypress": "^2.0.4",
     "eslint": "^4.14.0",
     "eslint-config-standard": "11.0.0-beta.0",
     "eslint-config-standard-preact": "^1.1.6",
     "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-cypress": "^2.0.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jest": "^21.12.2",
     "eslint-plugin-node": "^5.2.1",
@@ -72,6 +79,7 @@
     "redux-devtools": "^3.4.1",
     "rimraf": "^2.6.0",
     "sane-config": "^1.0.0",
+    "start-server-and-test": "^1.0.1",
     "style-loader": "^0.19.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.4.1",
@@ -105,7 +113,10 @@
     "collectCoverageFrom": [
       "src/app/**/*.js"
     ],
-    "moduleDirectories": ["node_modules", "src/app"],
+    "moduleDirectories": [
+      "node_modules",
+      "src/app"
+    ],
     "moduleNameMapper": {
       "^react$": "preact-compat",
       "^react-dom$": "preact-compat",
