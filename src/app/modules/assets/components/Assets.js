@@ -28,7 +28,8 @@ export default class Assets extends Component {
       const localeFile = Object.keys(file)[0]
       const localeTitle = Object.keys(title)[0]
       const localizedTitle = title[localeTitle]
-      const ext = file[localeFile].fileName.split('.').slice(1).join('') || "no extension"
+      const fileName = file[localeFile].fileName
+      const ext = fileName.slice((fileName.lastIndexOf('.') - 1 >>> 0) + 2)
       const formattedDate = distanceInWordsToNow(createdAt, { includeSeconds: true })
       const created = `created ${formattedDate} ago`
 
