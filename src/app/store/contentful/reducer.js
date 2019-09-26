@@ -12,7 +12,14 @@ export default function contentfulReducer (state = initialState, action) {
       accessToken
     }
   }
+  if (type === actions.SET_ENVRIONMENT) {
+    const { environment } = data
 
+    return {
+      ...state,
+      environment
+    }
+  }
   if (type === actions.SET_SPACE_ID) {
     const { spaceId } = data
 

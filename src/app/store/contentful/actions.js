@@ -8,6 +8,9 @@ export const setAccessToken = createActionCreator(SET_ACCESS_TOKEN)
 export const SET_SPACE_ID = createDeltaAction(name, 'SET_SPACE_ID')
 export const setSpaceId = createActionCreator(SET_SPACE_ID)
 
+export const SET_ENVRIONMENT = createDeltaAction(name, 'SET_ENVRIONMENT')
+export const setEnvironment = createActionCreator(SET_ENVRIONMENT)
+
 export const SET_HOST = createDeltaAction(name, 'SET_HOST')
 export const setHost = createActionCreator(SET_HOST)
 
